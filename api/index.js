@@ -4,6 +4,7 @@ const moongose = require("mongoose");
 const dotoenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
+const testerRoute = require("./routes/test");
 
 dotoenv.config();
 moongose
@@ -16,6 +17,7 @@ moongose
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
+app.use("/api", testerRoute);
 
 app.listen(8800, () => {
   console.log("server is running on port 8800");
