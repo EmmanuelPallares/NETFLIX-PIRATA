@@ -15,6 +15,7 @@ moongose
   .catch((err) => console.log(err));
 app.use(express.json());
 app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
 
 app.listen(8800, () => {
   console.log("server is running on port 8800");
