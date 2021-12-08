@@ -20,9 +20,13 @@ import NewList from "./pages/newList/NewList";
 import MovieList from "./pages/movieList/MovieList";
 import { Movie } from "@material-ui/icons";
 import NewMovie from "./pages/newMovie/NewMovie";
+import axios from "axios";
+
+import { logout } from "./context/authContext/AuthActions";
 
 function App() {
   const { user } = useContext(AuthContext);
+
   return (
     <Router>
       <Switch>
