@@ -2,8 +2,8 @@ const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const verify = require("../verifyToken");
-
 //UPDATE
+
 router.put("/:id", verify, async (req, res) => {
   if (req.user.id === req.params.id || req.user.isAdmin) {
     if (req.body.password) {
@@ -30,7 +30,6 @@ router.put("/:id", verify, async (req, res) => {
   }
 });
 
-//Delete your account
 //DELETE
 router.delete("/:id", verify, async (req, res) => {
   if (req.user.id === req.params.id || req.user.isAdmin) {
@@ -46,6 +45,7 @@ router.delete("/:id", verify, async (req, res) => {
 });
 
 //GET
+
 router.get("/find/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -55,6 +55,7 @@ router.get("/find/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 //GET ALL
 router.get("/", verify, async (req, res) => {
   const query = req.query.new;
@@ -71,6 +72,7 @@ router.get("/", verify, async (req, res) => {
     res.status(403).json("You are not allowed to see all users!");
   }
 });
+
 //GET USER STATS
 router.get("/stats", async (req, res) => {
   const today = new Date();
@@ -95,4 +97,5 @@ router.get("/stats", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 module.exports = router;

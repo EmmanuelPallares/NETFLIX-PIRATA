@@ -9,10 +9,10 @@ export default function WidgetSm() {
   useEffect(() => {
     const getNewUsers = async () => {
       try {
-        const res = await axios.get("/users?new=true", {
+        const res = await axios.get("users?new=true", {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTU3MzQyNWYzOTgzYmQwYzkxZTBhOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODk4OTEyNiwiZXhwIjoxNjM5NDIxMTI2fQ.xmNNrX5zvWE-cB4zMI84-7QJ37wy_Yc77DMBBKaqE10",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjFmN2YzNmQxNDcwYzMwMTczNTNhNyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTA1MzQyNCwiZXhwIjoxNjM5MzEyNjI0fQ.ASAwsODywO_7kjCMqGcGn4tSfXcpDwsE1hi8s_cLjPk",
           },
         });
         setNewUsers(res.data);
@@ -25,18 +25,18 @@ export default function WidgetSm() {
 
   return (
     <div className="widgetSm">
-      <span className="widgetSmTitle">Nuevos Usuarios Registrados</span>
+      <span className="widgetSmTitle">New Join Members</span>
       <ul className="widgetSmList">
         {newUsers.map((user) => (
           <li className="widgetSmListItem">
-            {/* <img
+            <img
               src={
                 user.profilePic ||
                 "https://pbs.twimg.com/media/D8tCa48VsAA4lxn.jpg"
               }
               alt=""
               className="widgetSmImg"
-            /> */}
+            />
             <div className="widgetSmUser">
               <span className="widgetSmUsername">{user.username}</span>
             </div>

@@ -16,7 +16,8 @@ export const getLists = async (dispatch) => {
   try {
     const res = await axios.get("/lists", {
       headers: {
-        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+        token:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjFmN2YzNmQxNDcwYzMwMTczNTNhNyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTA1MzQyNCwiZXhwIjoxNjM5MzEyNjI0fQ.ASAwsODywO_7kjCMqGcGn4tSfXcpDwsE1hi8s_cLjPk",
       },
     });
     dispatch(getListsSuccess(res.data));
@@ -31,7 +32,8 @@ export const createList = async (list, dispatch) => {
   try {
     const res = await axios.post("/lists", list, {
       headers: {
-        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+        token:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjFmN2YzNmQxNDcwYzMwMTczNTNhNyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTA1MzQyNCwiZXhwIjoxNjM5MzEyNjI0fQ.ASAwsODywO_7kjCMqGcGn4tSfXcpDwsE1hi8s_cLjPk",
       },
     });
     dispatch(createListSuccess(res.data));
@@ -46,7 +48,8 @@ export const deleteList = async (id, dispatch) => {
   try {
     await axios.delete("/lists/" + id, {
       headers: {
-        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+        token:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjFmN2YzNmQxNDcwYzMwMTczNTNhNyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzOTA1MzQyNCwiZXhwIjoxNjM5MzEyNjI0fQ.ASAwsODywO_7kjCMqGcGn4tSfXcpDwsE1hi8s_cLjPk",
       },
     });
     dispatch(deleteListSuccess(id));

@@ -9,7 +9,7 @@ const firebaseConfig = {
   storageBucket: "netflixpirata-5f3ac.appspot.com",
   messagingSenderId: "317587128355",
   appId: "1:317587128355:web:e8114f97353b5f0dd73196",
-  measurementId: "G-NS02RW0FRD",
+  measurementId: "${config.measurementId}",
 };
 
 firebase.initializeApp(firebaseConfig);

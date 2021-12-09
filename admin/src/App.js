@@ -20,8 +20,7 @@ import NewList from "./pages/newList/NewList";
 import MovieList from "./pages/movieList/MovieList";
 import { Movie } from "@material-ui/icons";
 import NewMovie from "./pages/newMovie/NewMovie";
-import axios from "axios";
-import { login } from "./pages/login/Login";
+
 import { logout } from "./context/authContext/AuthActions";
 
 function App() {
@@ -41,6 +40,9 @@ function App() {
               </Route>
               <Route path="/users">
                 <UserList />
+              </Route>
+              <Route path="/login">
+                <Login />
               </Route>
               <Route path="/user/:userId">
                 <User />

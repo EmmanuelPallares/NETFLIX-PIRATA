@@ -13,33 +13,46 @@ router.post("/register", async (req, res) => {
       process.env.SECRET_KEY
     ).toString(),
   });
+
   try {
-    const user = await newUser.save();
-    res.status(201).json(user);
+    const savedUser = await newUser.save();
+    res.status(201).json(savedUser);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//Login
+//LOGIN
 
 router.post("/login", async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
-    !user && res.status(401).json("User not found or password");
-    const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
-    const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
-    originalPassword !== req.body.password &&
-      res.status(401).json("Wrong password or username!");
-    const accessToken = jwt.sign(
-      { id: user._id, isAdmin: user.isAdmin },
-      process.env.SECRET_KEY,
-      { expiresIn: "5d" }
+    const user = await User.findOne({ username: req.body.username });
+    !user && res.status(401).json("Wrong credentials!");
+
+    const hashedPassword = CryptoJS.AES.decrypt(
+      user.password,
+      process.env.SECRET_KEY
     );
-    const { password, ...info } = user._doc;
-    res.status(200).json({ ...info, accessToken });
+    const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+
+    OriginalPassword !== req.body.password &&
+      res.status(401).json("Wrong credentials!");
+
+    const accessToken = jwt.sign(
+      {
+        id: user._id,
+        isAdmin: user.isAdmin,
+      },
+      process.env.SECRET_KEY,
+      { expiresIn: "3d" }
+    );
+
+    const { password, ...others } = user._doc;
+
+    res.status(200).json({ ...others, accessToken });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 module.exports = router;
