@@ -21,7 +21,7 @@ import MovieList from "./pages/movieList/MovieList";
 import { Movie } from "@material-ui/icons";
 import NewMovie from "./pages/newMovie/NewMovie";
 import axios from "axios";
-
+import { login } from "./pages/login/Login";
 import { logout } from "./context/authContext/AuthActions";
 
 function App() {
